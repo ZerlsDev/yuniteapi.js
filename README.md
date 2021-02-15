@@ -24,47 +24,36 @@ Yunite.registrationData(['array of user Ids']).then((result => console.log(resul
 
 * [registrationData(['array of user Ids'])](#registrationData) - Access registration data of a guild and know which Discord user is linked to which Epic user.
 * [addPlayerToQueue(userId)](#addPlayerToQueue) - Join a player into a custom game
-* [blockUser(userId, reason, options)](#blockUser) - Block users from using Yunite on provided guild
-* [unblockUser(userId, reason)](#unblockUser) - Unblock users from Yunite on provided guild
+* [blockUser(userId, options)](#blockUser) - Block a user from using Yunite on provided guild
+* [blockEpic(epicId, options)](#blockEpic) - Block an epic account from using Yunite on provided guild
+* [unblockUser(userId)](#unblockUser) - Unblock a user from Yunite on provided guild
+* [unblockEpic(epicId)](#unblockEpic) - Unblock an epic account from Yunite on provided guild
+* [addPlayerToQueue(userid)](#addPlayerToQueue) - Join a player into a custom queue
+* [listTournaments()](#listTournaments) - Get list of tournaments
+* [tournamentLeaderboards(tournamentId)](#tournamentLeaderboards) - Get leaderboard of tournament
+* [tournamentMatches(tournamentId)](#tournamentMatches) - Get list of matches in tournament
+* [sessionLeaderboard(tournamentId, sessionId)](#sessionLeaderboard) - Get leaderboard of single match
 
-## getUserStats(userId)
-Return the users Elite Creative statistics
+## registrationData(['array of user Ids'])
+Access registration data of a guild and know which Discord user is linked to which Epic user.
 ```js
-elite.getUserStats('some user id').then((result => console.log(result)));
+Yunite.registrationData(['123456789123456789', '987654321987654321']).then((result => console.log(result)));
 ```
 
-## getUserQueue(userId)
-Returns information about the users queue (if they're queuing)
+## addPlayerToQueue(userId)
+Join a player into a custom game
 ```js
-elite.getUserQueue('some user id').then((result => console.log(result)));
+Yunite.addPlayerToQueue('123456789123456789').then((result => console.log(result)));
 ```
 
-## inGame(userId)
-Whether or not the user is in an on going match
+## blockUser(userId)
+Block a user from using Yunite on provided guild
 ```js
-elite.inGame('some user id').then((result => console.log(result)));
+Yunite.blockUser('123456789123456789', { reason: 'Test', blockLinkedEpic: true }).then((result => console.log(result)));
 ```
 
-## getMatchByGameId(gameId)
-Get a games statistics by it's game Id
+## blockEpic(epicId)
+Block an epic account from using Yunite on provided guild
 ```js
-elite.getMatchByGameId('some game id').then((result => console.log(result)));
-```
-
-## getMatchByUserId(userId)
-Get a games statistics by one of the players (either player 1 or 2) 
-```js
-elite.getMatchByUserId('some user id').then((result => console.log(result)));
-```
-
-## getTeamByTeamId(teamId)
-Return information about a team by it's Id
-```js
-elite.getTeamByTeamId('some team id').then((result => console.log(result)));
-```
-
-## getTeamByUserId(userId)
-Return information about a team by either the captain or member's Id
-```js
-elite.getTeamByUserId('some user id').then((result => console.log(result)));
+Yunite.blockEpic('epicId', { reason: 'Test', blockLinkedUser: true }).then((result => console.log(result)));
 ```
