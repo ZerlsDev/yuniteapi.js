@@ -35,7 +35,7 @@ class YuniteAPI {
      */
     async blockUser(id = this.id, options = this.options) {
         if (!id) throw new TypeError(`No User ID Provided`);
-        if (!options) options = { reason: 'No Reason Provided', blockLinkedUser: true };
+        if (!options) options = { reason: 'No Reason Provided', blockLinkedEpic: true };
         return blockUser(id, this._token, this._guildId, config.endpoints.block_user, options);
     }
 
@@ -46,7 +46,7 @@ class YuniteAPI {
      */
     async blockEpic(id = this.id, options = this.options) {
         if (!id) throw new TypeError(`No Epic ID Provided`);
-        if (!options) options = { reason: 'No Reason Provided', blockLinkedEpic: true };
+        if (!options) options = { reason: 'No Reason Provided', blockLinkedUser: true };
         return blockEpic(id, this._token, this._guildId, config.endpoints.block_user, options);
     }
 
