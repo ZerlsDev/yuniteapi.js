@@ -1,8 +1,8 @@
 const fetch = require('node-fetch');
 const config = require('../config.js');
 
-module.exports = async function (id, authorization, guildId, endpoint, { reason, blockLinkedEpic } = {}) {
-    let data = { "op": "BLOCK", "userType": "EPIC", "reason": reason, "blockLinkedUser": blockLinkedEpic, "userId": id };
+module.exports = async function (id, authorization, guildId, endpoint, { reason, blockLinkedUser } = {}) {
+    let data = { "op": "BLOCK", "userType": "EPIC", "reason": reason, "blockLinkedUser": blockLinkedUser, "userId": id };
     return fetch(`https://${config.domain}${endpoint.replace(':guildId', `${guildId}`)}`, {
         method: 'post',
         body: JSON.stringify(data),
