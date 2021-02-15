@@ -22,16 +22,16 @@ Yunite.registrationData(['array of user Ids']).then((result => console.log(resul
 
 # Methods
 
-* [registrationData(['array of user Ids'])](#registrationData) - Access registration data of a guild and know which Discord user is linked to which Epic user.
-* [addPlayerToQueue(userId)](#addPlayerToQueue) - Join a player into a custom game
-* [blockUser(userId, options)](#blockUser) - Block a user from using Yunite on provided guild
-* [blockEpic(epicId, options)](#blockEpic) - Block an epic account from using Yunite on provided guild
-* [unblockUser(userId)](#unblockUser) - Unblock a user from Yunite on provided guild
-* [unblockEpic(epicId)](#unblockEpic) - Unblock an epic account from Yunite on provided guild
-* [listTournaments()](#listTournaments) - Get list of tournaments
-* [tournamentLeaderboards(tournamentId)](#tournamentLeaderboards) - Get leaderboard of tournament
-* [tournamentMatches(tournamentId)](#tournamentMatches) - Get list of matches in tournament
-* [sessionLeaderboard(tournamentId, sessionId)](#sessionLeaderboard) - Get leaderboard of single match
+* [registrationData(['array of user Ids'])](#registrationdataarray-of-user-ids) - Access registration data of a guild and know which Discord user is linked to which Epic user.
+* [addPlayerToQueue(userId)](#addplayertoqueueuserid) - Join a player into a custom game
+* [blockUser(userId, options)](#blockuseruserid-options) - Block a user from using Yunite on provided guild
+* [blockEpic(epicId, options)](#blockepicepicid-options) - Block an epic account from using Yunite on provided guild
+* [unblockUser(userId)](#unblockuseruserid) - Unblock a user from Yunite on provided guild
+* [unblockEpic(epicId)](#unblockepicepicid) - Unblock an epic account from Yunite on provided guild
+* [listTournaments()](#listtournaments) - Get list of tournaments
+* [tournamentLeaderboards(tournamentId)](#tournamentleaderboardstournamentid) - Get leaderboard of tournament
+* [tournamentMatches(tournamentId)](#tournamentmatchestournamentid) - Get list of matches in tournament
+* [sessionLeaderboard(tournamentId, sessionId)](#sessionleaderboardtournamentid-sessionid) - Get leaderboard of single match
 
 ## registrationData(['array of user Ids'])
 Access registration data of a guild and know which Discord user is linked to which Epic user.
