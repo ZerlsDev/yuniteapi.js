@@ -32,6 +32,7 @@ Yunite.registrationData(['array of user Ids']).then((result => console.log(resul
 * [tournamentLeaderboards(tournamentId)](#tournamentleaderboardstournamentid) - Get leaderboard of tournament
 * [tournamentMatches(tournamentId)](#tournamentmatchestournamentid) - Get list of matches in tournament
 * [sessionLeaderboard(tournamentId, sessionId)](#sessionleaderboardtournamentid-sessionid) - Get leaderboard of single match
+* [appData()](#appData) - Get information about your Yunite Application
 
 ## registrationData(['array of user Ids'])
 Access registration data of a guild and know which Discord user is linked to which Epic user.
@@ -91,4 +92,10 @@ Yunite.tournamentMatches('bd4e8807-629f-4820-9207-13d899e76a67').then((result =>
 Get leaderboard of single match
 ```js
 Yunite.tournamentMatches('bd4e8807-629f-4820-9207-13d899e76a67', '56acd6f7627a4763b1b38c58f3fe5169').then((result => console.log(result)));
+```
+
+## appData()
+Get information on your Yunite Application
+```js
+Yunite.appData().then((result => console.log(result)));
 ```
