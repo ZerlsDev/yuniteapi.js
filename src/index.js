@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, appData } = require('./functions');
 const config = require('./config');
 
 /**
@@ -28,6 +28,9 @@ class YuniteAPI {
         return registrationData(id, this._token, this._guildId, config.endpoints.registration);
     }
 
+     async appData() {
+        return registrationData(id, this._token, this._guildId, config.endpoints.appData);
+    }
     /**
      * Block User
      * @param {String} id User ID of the user you're blocking

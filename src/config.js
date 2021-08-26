@@ -7,6 +7,8 @@ module.exports = {
         list_tournaments: '/guild/:guildId/tournaments',
         tournaments_leaderboards: '/guild/:guildId/tournaments/:tournamentId/leaderboard',
         tournament_matches: '/guild/:guildId/tournaments/:tournamentId/matches',
-        single_tournament_leaderboard: '/guild/:guildId/tournaments/:tournamentId/matches/:sessionId'
+        single_tournament_leaderboard: '/guild/:guildId/tournaments/:tournamentId/matches/:sessionId',
+        appData: '/app'
+
     }   
 };
