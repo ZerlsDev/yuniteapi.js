@@ -27,8 +27,10 @@ class YuniteAPI {
         if (id.length === 0) throw new TypeError('No User Ids');
         return registrationData(id, this._token, this._guildId, config.endpoints.registration);
     }
-
-     async appData() {
+    /**
+        * Get Yunite Application Info
+    */
+    async appData() {
         return registrationData(id, this._token, this._guildId, config.endpoints.appData);
     }
     /**
