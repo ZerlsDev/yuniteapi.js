@@ -31,7 +31,7 @@ class YuniteAPI {
         * Get Yunite Application Info
     */
     async appData() {
-        return registrationData(id, this._token, this._guildId, config.endpoints.appData);
+        return appData(this._token, this._guildId, config.endpoints.appData);
     }
     /**
      * Block User
