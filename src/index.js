@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams } = require('./functions');
 const config = require('./config');
 
 /**
@@ -122,10 +122,20 @@ class YuniteAPI {
 
     /**
      * Get single tournament 
+     * @param {String} tournamentId Tournament ID
      */
     async singleTournament(tournamentId = this.tournamentId) {
         if (!tournamentId) throw new TypeError('No Tournament ID Provided');
         return singleTournament(this._token, this._guildId, tournamentId);
+    }
+
+    /**
+     * Get all teams in a tournament
+     * @param {String} tournamentId Tournament ID
+     */
+     async listAllTournamentTeams(tournamentId = this.tournamentId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        return listAllTournamentTeams(this._token, this._guildId, tournamentId);
     }
 }
 
