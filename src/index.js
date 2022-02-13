@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData } = require('./functions');
 const config = require('./config');
 
 /**
@@ -136,6 +136,16 @@ class YuniteAPI {
      async listAllTournamentTeams(tournamentId = this.tournamentId) {
         if (!tournamentId) throw new TypeError('No Tournament ID Provided');
         return listAllTournamentTeams(this._token, this._guildId, tournamentId);
+    }
+
+    /**
+     * Get Epic registration data
+     * @param {Array} id The Epic users id who you're getting registration data of
+     */
+    async epicRegistrationData(id = this.id) {
+        if (!Array.isArray(id)) throw new TypeError('User Ids is an array');
+        if (id.length === 0) throw new TypeError('No User Ids');
+        return epicRegistrationData(id, this._token, this._guildId, config.endpoints.registration);
     }
 }
 

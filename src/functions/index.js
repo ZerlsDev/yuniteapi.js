@@ -11,5 +11,6 @@ module.exports = {
     sessionLeaderboard: require('./sessionLeaderboard.js'),
     acssStatistics: require('./acssStatistics.js'),
     singleTournament:  require('./singleTournament.js'),
-    listAllTournamentTeams: require('./listAllTournamentTeams.js')
+    listAllTournamentTeams: require('./listAllTournamentTeams.js'),
+    epicRegistrationData: require('./epicRegistrationData')
 };
