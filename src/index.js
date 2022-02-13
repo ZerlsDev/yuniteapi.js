@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament } = require('./functions');
 const config = require('./config');
 
 /**
@@ -111,6 +111,21 @@ class YuniteAPI {
         if (!tournamentId) throw new TypeError('No Tournament ID Provided');
         if (!sessionId) throw new TypeError('No Session ID Provided');
         return sessionLeaderboard(tournamentId, sessionId, this._token, this._guildId, config.endpoints.single_tournament_leaderboard);
+    }
+
+    /**
+     * Get ACSS statistics
+     */
+    async acssStatistics() {
+        return acssStatistics(this._token, this._guildId);
+    }
+
+    /**
+     * Get single tournament 
+     */
+    async singleTournament(tournamentId = this.tournamentId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        return singleTournament(this._token, this._guildId, tournamentId);
     }
 }
 

@@ -8,5 +8,7 @@ module.exports = {
     listTournaments: require('./listTournaments.js'),
     tournamentLeaderboards: require('./tournamentLeaderboards.js'),
     tournamentMatches: require('./tournamentMatches.js'),
-    sessionLeaderboard: require('./sessionLeaderboard.js')
+    sessionLeaderboard: require('./sessionLeaderboard.js'),
+    acssStatistics: require('./acssStatistics'),
+    singleTournament:  require('./singleTournament.js')
 };
