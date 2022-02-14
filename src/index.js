@@ -115,9 +115,11 @@ class YuniteAPI {
 
     /**
      * Get ACSS statistics
+     * @param {Number} from The UNIX-timestamp of the from date 
+     * @param {Number} to The UNIX-timestamp of the to date
      */
-    async acssStatistics() {
-        return acssStatistics(this._token, this._guildId);
+    async acssStatistics(from, to) {
+        return acssStatistics(this._token, this._guildId, from, to);
     }
 
     /**

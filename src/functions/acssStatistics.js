@@ -1,8 +1,12 @@
 const fetch = require('node-fetch');
 const config = require('../config.js');
 
-module.exports = async function (authorization, guildId) {
-    return fetch(`https://${config.domain}/guild/${guildId}/acss/stats`, {
+module.exports = async function (authorization, guildId, from, to) {
+    let url = `https://${config.domain}/guild/${guildId}/acss/stats?`;
+    if (from) { url += `from=${from}&`; };
+    if (to) { url += `to=${to}`; };
+
+    return fetch(url, {
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
