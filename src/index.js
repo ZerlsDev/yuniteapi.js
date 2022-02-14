@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament } = require('./functions');
 const config = require('./config');
 
 /**
@@ -118,7 +118,7 @@ class YuniteAPI {
      * @param {Number} from The UNIX-timestamp of the from date 
      * @param {Number} to The UNIX-timestamp of the to date
      */
-    async acssStatistics(from, to) {
+    async acssStatistics(from = this.from, to = this.to) {
         return acssStatistics(this._token, this._guildId, from, to);
     }
 
@@ -148,6 +148,18 @@ class YuniteAPI {
         if (!Array.isArray(id)) throw new TypeError('User Ids is an array');
         if (id.length === 0) throw new TypeError('No User Ids');
         return epicRegistrationData(id, this._token, this._guildId, config.endpoints.registration);
+    }
+
+    /**
+     * Add team to a tournament
+     * @param {String} epicId User Epic ID of the player you're adding to the tournament (only either Epic or Discord Id needed)
+     * @param {String} discordId User Discord ID of the player you're adding to the tournament (only either Epic or Discord Id needed)
+     * @param {String} tournamentId Tournament ID 
+     */
+    async addTeamToTournament(tournamentId = this.tournamentId, epicId = this.epicId, discordId = this.discordId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        if (!epicId && !discordId) throw new TypeError('At least 1 of Epic or Discord Id needed');
+        return addTeamToTournament(tournamentId, this._token, this._guildId, epicId, discordId);
     }
 }
 
