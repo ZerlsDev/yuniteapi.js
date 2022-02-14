@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament, disqualifyTeamFromTournament } = require('./functions');
 const config = require('./config');
 
 /**
@@ -160,6 +160,17 @@ class YuniteAPI {
         if (!tournamentId) throw new TypeError('No Tournament ID Provided');
         if (!epicId && !discordId) throw new TypeError('At least 1 of Epic or Discord Id needed');
         return addTeamToTournament(tournamentId, this._token, this._guildId, epicId, discordId);
+    }
+
+    /**
+     * 
+     * @param {String} teamId Team ID 
+     * @param {String} tournamentId Tournament ID 
+     */
+    async disqualifyTeamFromTournament(teamId = this.teamId, tournamentId = this.tournamentId) {
+        if (!teamId) throw new TypeError('No Tournament ID Provided');
+        if (!tournamentId) throw new TypeError('No Team ID Provided');
+        return disqualifyTeamFromTournament(teamId, tournamentId, this._token, this._guildId);
     }
 }
 
