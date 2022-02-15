@@ -14,5 +14,6 @@ module.exports = {
     listAllTournamentTeams: require('./listAllTournamentTeams.js'),
     epicRegistrationData: require('./epicRegistrationData'),
     addTeamToTournament: require('./addTeamToTournament'),
-    disqualifyTeamFromTournament: require('./disqualifyTeamFromTournament')
+    disqualifyTeamFromTournament: require('./disqualifyTeamFromTournament'),
+    updateTeam: require('./updateTeam')
 };

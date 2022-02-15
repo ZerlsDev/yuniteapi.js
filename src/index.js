@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament, disqualifyTeamFromTournament } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament, disqualifyTeamFromTournament, updateTeam } = require('./functions');
 const config = require('./config');
 
 /**
@@ -171,6 +171,20 @@ class YuniteAPI {
         if (!teamId) throw new TypeError('No Tournament ID Provided');
         if (!tournamentId) throw new TypeError('No Team ID Provided');
         return disqualifyTeamFromTournament(teamId, tournamentId, this._token, this._guildId);
+    }
+
+    /**
+     * 
+     * @param {String} teamId Team ID 
+     * @param {String} tournamentId Team ID 
+     * @param {Object} players Epic and/or Discord ID of each of the players
+     */
+    async updateTeam(teamId = this.teamId, tournamentId = this.tournamentId, players = this.players) {
+        if (!teamId) throw new TypeError('No Tournament ID Provided');
+        if (!tournamentId) throw new TypeError('No Team ID Provided');
+        if (!players) throw new TypeError('No Players Provided');
+        if (!players.player1 && !players.player2 && !players.player3 && !players.player4) throw new TypeError('No Players Found in Array');
+        return updateTeam(teamId, tournamentId, this._token, this._guildId, players);
     }
 }
 
