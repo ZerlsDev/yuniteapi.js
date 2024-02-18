@@ -1,4 +1,4 @@
-const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard } = require('./functions');
+const { registrationData, blockUser, blockEpic, unblockUser, unblockEpic, addPlayerToQueue, listTournaments, tournamentLeaderboards, tournamentMatches, sessionLeaderboard, acssStatistics, singleTournament, listAllTournamentTeams, epicRegistrationData, addTeamToTournament, disqualifyTeamFromTournament, updateTeam } = require('./functions');
 const config = require('./config');
 
 /**
@@ -111,6 +111,80 @@ class YuniteAPI {
         if (!tournamentId) throw new TypeError('No Tournament ID Provided');
         if (!sessionId) throw new TypeError('No Session ID Provided');
         return sessionLeaderboard(tournamentId, sessionId, this._token, this._guildId, config.endpoints.single_tournament_leaderboard);
+    }
+
+    /**
+     * Get ACSS statistics
+     * @param {Number} from The UNIX-timestamp of the from date 
+     * @param {Number} to The UNIX-timestamp of the to date
+     */
+    async acssStatistics(from = this.from, to = this.to) {
+        return acssStatistics(this._token, this._guildId, from, to);
+    }
+
+    /**
+     * Get single tournament 
+     * @param {String} tournamentId Tournament ID
+     */
+    async singleTournament(tournamentId = this.tournamentId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        return singleTournament(this._token, this._guildId, tournamentId);
+    }
+
+    /**
+     * Get all teams in a tournament
+     * @param {String} tournamentId Tournament ID
+     */
+     async listAllTournamentTeams(tournamentId = this.tournamentId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        return listAllTournamentTeams(this._token, this._guildId, tournamentId);
+    }
+
+    /**
+     * Get Epic registration data
+     * @param {Array} id The Epic users id who you're getting registration data of
+     */
+    async epicRegistrationData(id = this.id) {
+        if (!Array.isArray(id)) throw new TypeError('User Ids is an array');
+        if (id.length === 0) throw new TypeError('No User Ids');
+        return epicRegistrationData(id, this._token, this._guildId, config.endpoints.registration);
+    }
+
+    /**
+     * Add team to a tournament
+     * @param {String} epicId User Epic ID of the player you're adding to the tournament (only either Epic or Discord Id needed)
+     * @param {String} discordId User Discord ID of the player you're adding to the tournament (only either Epic or Discord Id needed)
+     * @param {String} tournamentId Tournament ID 
+     */
+    async addTeamToTournament(tournamentId = this.tournamentId, epicId = this.epicId, discordId = this.discordId) {
+        if (!tournamentId) throw new TypeError('No Tournament ID Provided');
+        if (!epicId && !discordId) throw new TypeError('At least 1 of Epic or Discord Id needed');
+        return addTeamToTournament(tournamentId, this._token, this._guildId, epicId, discordId);
+    }
+
+    /**
+     * 
+     * @param {String} teamId Team ID 
+     * @param {String} tournamentId Tournament ID 
+     */
+    async disqualifyTeamFromTournament(teamId = this.teamId, tournamentId = this.tournamentId) {
+        if (!teamId) throw new TypeError('No Tournament ID Provided');
+        if (!tournamentId) throw new TypeError('No Team ID Provided');
+        return disqualifyTeamFromTournament(teamId, tournamentId, this._token, this._guildId);
+    }
+
+    /**
+     * 
+     * @param {String} teamId Team ID 
+     * @param {String} tournamentId Team ID 
+     * @param {Object} players Epic and/or Discord ID of each of the players
+     */
+    async updateTeam(teamId = this.teamId, tournamentId = this.tournamentId, players = this.players) {
+        if (!teamId) throw new TypeError('No Tournament ID Provided');
+        if (!tournamentId) throw new TypeError('No Team ID Provided');
+        if (!players) throw new TypeError('No Players Provided');
+        if (!players.player1 && !players.player2 && !players.player3 && !players.player4) throw new TypeError('No Players Found in Array');
+        return updateTeam(teamId, tournamentId, this._token, this._guildId, players);
     }
 }
 

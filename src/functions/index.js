@@ -8,5 +8,12 @@ module.exports = {
     listTournaments: require('./listTournaments.js'),
     tournamentLeaderboards: require('./tournamentLeaderboards.js'),
     tournamentMatches: require('./tournamentMatches.js'),
-    sessionLeaderboard: require('./sessionLeaderboard.js')
+    sessionLeaderboard: require('./sessionLeaderboard.js'),
+    acssStatistics: require('./acssStatistics.js'),
+    singleTournament:  require('./singleTournament.js'),
+    listAllTournamentTeams: require('./listAllTournamentTeams.js'),
+    epicRegistrationData: require('./epicRegistrationData'),
+    addTeamToTournament: require('./addTeamToTournament'),
+    disqualifyTeamFromTournament: require('./disqualifyTeamFromTournament'),
+    updateTeam: require('./updateTeam')
 };
